@@ -81,6 +81,11 @@ def all_tweet():
         usernames.append(username)
     return render_template('all_tweet.html', tweets=tweets, tweets_usernames=zip(tweets, usernames))
 
+@app.route('/signout')
+def signout():
+    login_session['User']=None
+    auth.current_user= None
+    return redirect(url_for('signin'))
 
 if __name__ == '__main__':
     app.run(debug=True)
