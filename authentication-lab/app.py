@@ -61,10 +61,32 @@ def add_tweet():
         title = request.form['title']
         text = request.form['text']
         tweet = {'title':title, 'text':text, 'uid':login_session['user']['localId']}
-        db.child('Users').child('UID').child('Tweets').set(tweet)
-        return redirect(url_for('add_tweet'))
+        db.child('Tweets').push(tweet)
+        return redirect(url_for('all_tweet'))
     else:
-        return render_template("tweet.html")
+        return render_template("add_tweet.html")
+
+
+@app.route('/all_tweet', methods=['GET', 'POST'])
+def all_tweet():
+    tweets= db.child('Tweets').get().val()
+    usernames= []
+    for key in tweets:
+        url1= tweets[key]['uid']
+        r_name= db.child('Users').child(url1).get().val()
+        if r_name == None:
+            username= 'User deleted' 
+        else:
+            username= r_name['username']
+        usernames.append(username)
+
+    # for i in db.child('Tweets'):
+    #     url1 = db.child(i).get('uid').val()
+        # for m in db.child('Users'):
+        #     url2 = login_session['user']['localId']
+        # if url1==url2:
+        #     r_name = db.child('Users').get('username').val()
+    return render_template('all_tweet.html', tweets=tweets, tweets_usernames=zip(tweets, usernames))
 
 
 if __name__ == '__main__':

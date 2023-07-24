@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Tweets</title>
+</head>
+<body>
+
+{% for tweet,username in tweets_usernames %}
+<p> These are the tweets you posted already: </p> 
+<p> {{username}} </p>
+<p> {{tweets[tweet]['title']}} </p>
+<p> {{tweets[tweet]['text']}} </p>
+<br>
+{% endfor %}
+
+
+
+</body>
+</html>
