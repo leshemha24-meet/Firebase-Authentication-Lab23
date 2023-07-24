@@ -6,5 +6,36 @@
 </head>
 <body>
     Great Job!
+
+    <form method="post" action="/signup">
+
+        <h4>
+            Add a tweet!
+        </h4>
+
+        <p >
+            What do you want to tweet?
+        </p>
+
+        <div>
+            <label>Title*</label>
+            <div>
+                <input type="text"  name="title" id="title" required>
+            </div>
+        </div>
+
+        <div>
+            <label>Text*</label>
+            <div>
+                <input type="text"  name="text" id="text" maxlength="280" required>
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div>
+            <input type="submit"/>
+        </div>
+    </form>
+
 </body>
 </html>
