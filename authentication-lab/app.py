@@ -79,13 +79,6 @@ def all_tweet():
         else:
             username= r_name['username']
         usernames.append(username)
-
-    # for i in db.child('Tweets'):
-    #     url1 = db.child(i).get('uid').val()
-        # for m in db.child('Users'):
-        #     url2 = login_session['user']['localId']
-        # if url1==url2:
-        #     r_name = db.child('Users').get('username').val()
     return render_template('all_tweet.html', tweets=tweets, tweets_usernames=zip(tweets, usernames))
 
 
